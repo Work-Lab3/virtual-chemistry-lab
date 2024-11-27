@@ -10,7 +10,8 @@ export default function ChemicalBlock({
   block1, 
   disabled, 
   title, 
-  setChemicalBlock 
+  setChemicalBlock,
+  selectedChemical
 }) {
 
   const listChemicals = async (collectionId) => {
@@ -22,7 +23,8 @@ export default function ChemicalBlock({
 
       const newChemicalBlocks = response.documents.map((item) => ({
         name: item.Chemical,
-        image: item.Image
+        image: item.Image,
+        color:item?.color
       }));
 
       setChemicalBlock(prev => [...prev, ...newChemicalBlocks]);
@@ -32,7 +34,7 @@ export default function ChemicalBlock({
   }
   // console.log(chemicals)
   return (
-    <Card className="w-full md:w-64">
+    <Card className="w-full md:w-64 bg-transparent outline-none border-none text-white">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
@@ -46,15 +48,16 @@ export default function ChemicalBlock({
                 if (block1 && chemical.collectionId) listChemicals(chemical.collectionId);
               }}
               disabled={disabled}
-              className={`flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${
-                disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-100'
+              className={`flex flex-col items-center p-2 rounded-lg transition-all duration-300 
+                ${
+                disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
               }`}
             >
               <img
                 src={chemical.image}
                 alt={chemical.name}
                 
-                className="w-[80px] h-[80px] rounded-full bg-gray-200 shadow-lg transition-transform transform hover:scale-105 hover:rotate-2 hover:shadow-2xl"
+                className="w-[80px] h-[80px] rounded-full bg-gray-200 shadow-lg transition-transform transform hover:scale-105 hover:rotate-2 hover:shadow-2xl hover:bg-blue-400"
               />
               <span className="mt-2 text-sm font-medium text-center">{chemical.name}</span>
             </button>

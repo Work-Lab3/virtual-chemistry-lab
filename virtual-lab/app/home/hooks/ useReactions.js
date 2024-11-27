@@ -38,7 +38,7 @@ const productData=async (id,name)=>{
            (r.reactant1 === chemical2 && r.reactant2 === chemical1)
     )
     console.log(forProduct)
-    return reaction || { product: `${forProduct.Product}`, color: `${forProduct.ProductColor} (${forProduct.ProductColor2})` }
+    return forProduct || { product: `${forProduct.Product}`, color: `${forProduct.ProductColor} (${forProduct.ProductColor2})` }
   }
 
   return { getReaction }

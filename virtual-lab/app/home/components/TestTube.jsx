@@ -1,3 +1,4 @@
+import { useColor } from '@/context/contextProvider'
 import { motion } from 'framer-motion'
 
 export default function TestTube({ chemicals, reactionResult }) {
@@ -5,6 +6,9 @@ export default function TestTube({ chemicals, reactionResult }) {
   const chemical1=chemicals[0]
   const chemical2=chemicals[1]
   
+  const {color}=useColor();
+  
+
   const getColor = (chemical) => {
     const colors = {
       "Water": "#3B82F6",
@@ -26,7 +30,7 @@ export default function TestTube({ chemicals, reactionResult }) {
   }
 
   return (
-    <div className="relative w-24 h-64 bg-gray-200 rounded-b-full overflow-hidden shadow-inner">
+    <div className="absolute w-24 h-64 bg-gray-200 rounded-b-full outline-none border-none overflow-hidden shadow-inner">
       <div className="absolute inset-x-0 top-0 h-4 bg-gray-300 rounded-t-full"></div>
       {chemicals.length === 1 && (
         <motion.div
@@ -34,7 +38,7 @@ export default function TestTube({ chemicals, reactionResult }) {
           initial={{ height: 0 }}
           animate={{ height: '50%' }}
           transition={{ duration: 0.5 }}
-          style={{ backgroundColor: getColor(chemicals[0]) }}
+          style={{ backgroundColor: chemicals[0].color }}
         />
       )}
       {chemicals.length === 2 && (
@@ -52,9 +56,10 @@ export default function TestTube({ chemicals, reactionResult }) {
           initial={{ height: 0 }}
           animate={{ height: '100%' }}
           transition={{ duration: 1 }}
-          style={{ backgroundColor: reactionResult.color }}
+          style={{ backgroundColor: color }}
         />
       )}
+      Test Tube
     </div>
   )
 }
