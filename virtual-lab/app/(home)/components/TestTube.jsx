@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 
 export default function TestTube({ chemicals, reactionResult }) {
-  console.log(chemicals)
+  
+  const chemical1=chemicals[0]
+  const chemical2=chemicals[1]
   const getColor = (chemical) => {
     const colors = {
       "Water": "#3B82F6",

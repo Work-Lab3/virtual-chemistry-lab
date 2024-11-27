@@ -30,7 +30,7 @@ export default function ChemicalBlock({
       console.error("Error fetching chemicals:", error);
     }
   }
-
+  // console.log(chemicals)
   return (
     <Card className="w-full md:w-64">
       <CardHeader>
@@ -42,7 +42,7 @@ export default function ChemicalBlock({
             <button
               key={chemical.name}
               onClick={() => {
-                onSelect(chemical.name);
+                onSelect({name:chemical.name,id:chemical?.collectionId});
                 if (block1 && chemical.collectionId) listChemicals(chemical.collectionId);
               }}
               disabled={disabled}

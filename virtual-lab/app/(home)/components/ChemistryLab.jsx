@@ -26,6 +26,7 @@ export default function ChemistryLab() {
 
   const handleReact = async () => {
     if (selectedChemicals.length === 2) {
+      console.log(selectedChemicals)
       const result = await getReaction(selectedChemicals[0], selectedChemicals[1])
       setReactionResult(result)
     }
@@ -38,7 +39,7 @@ export default function ChemistryLab() {
   }
 
   const chemicalsBlock1 = chemicals
-
+  // console.log(chemicals)
   return (
     <div className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8">
@@ -55,7 +56,10 @@ export default function ChemistryLab() {
         </div>
         <ChemicalBlock 
           chemicals={chemicalsBlock2} 
-          onSelect={(name) => handleChemicalSelect(name, 1)}          
+          onSelect={(name) => {
+            handleChemicalSelect(name, 1)
+            console.log(name)
+          }}          
           block1={false}
           disabled={selectedChemicals.length !== 1}
           title="Block 2 Chemicals"

@@ -6,15 +6,15 @@ const client = new Client()
 
 const databases = new Databases(client);
 
-export async function DataBring(collectionId){
+export async function DataBring(collectionId,chemical1){
  let promise= databases.listDocuments(
+    '67456ae700165699b208',
     collectionId,
-    "6745c4e700317a9005db",
     [
-        Query.equal('Chemical1', Chemical1)
+        Query.equal('Chemical', chemical1)
     ]
 );
-return promise
+console.log(promise)
 }
 
 export async function listDocuments(collectionId) {

@@ -1,3 +1,4 @@
+import { DataBring } from '@/lib/appwrite'
 import { useState, useEffect } from 'react'
 
 export function useReactions() {
@@ -19,9 +20,18 @@ export function useReactions() {
     }
 
     fetchReactions()
+   
+    
   }, [])
 
+const productData=async (id,name)=>{
+  let response = await DataBring(id,name)
+  return response
+}
+
   const getReaction = async (chemical1, chemical2) => {
+    const response=await productData(chemical1.id,chemical2.name)
+    console.log(response)
     const reaction = reactions.find(
       r => (r.reactant1 === chemical1 && r.reactant2 === chemical2) ||
            (r.reactant1 === chemical2 && r.reactant2 === chemical1)
