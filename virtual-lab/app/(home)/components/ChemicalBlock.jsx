@@ -53,9 +53,8 @@ export default function ChemicalBlock({
               <img
                 src={chemical.image}
                 alt={chemical.name}
-                width={80}
-                height={80}
-                className="object-contain rounded-full bg-gray-200 shadow-lg transition-transform transform hover:scale-105 hover:rotate-2 hover:shadow-2xl"
+                
+                className="w-[80px] h-[80px] rounded-full bg-gray-200 shadow-lg transition-transform transform hover:scale-105 hover:rotate-2 hover:shadow-2xl"
               />
               <span className="mt-2 text-sm font-medium text-center">{chemical.name}</span>
             </button>

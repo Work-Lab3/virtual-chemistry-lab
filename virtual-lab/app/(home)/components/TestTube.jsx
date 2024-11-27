@@ -4,6 +4,7 @@ export default function TestTube({ chemicals, reactionResult }) {
   
   const chemical1=chemicals[0]
   const chemical2=chemicals[1]
+  
   const getColor = (chemical) => {
     const colors = {
       "Water": "#3B82F6",
@@ -12,8 +13,8 @@ export default function TestTube({ chemicals, reactionResult }) {
       "Salt": "#F3F4F6",
       "Sugar": "#F3F4F6",
       "Lemon Juice": "#FCD34D",
-      "Milk": "#F3F4F6",
-      "Soap": "#93C5FD"
+      "Alcohol(CH₃CH₂OH)": "#FFF",
+      "Silver Nitrate": "#FFF"
     }
     return colors[chemical] || "#D1D5DB"
   }

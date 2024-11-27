@@ -25,18 +25,20 @@ export function useReactions() {
   }, [])
 
 const productData=async (id,name)=>{
+  console.log(id,name)
   let response = await DataBring(id,name)
   return response
 }
 
   const getReaction = async (chemical1, chemical2) => {
     const response=await productData(chemical1.id,chemical2.name)
-    console.log(response)
+    const forProduct=response.documents[0]
     const reaction = reactions.find(
       r => (r.reactant1 === chemical1 && r.reactant2 === chemical2) ||
            (r.reactant1 === chemical2 && r.reactant2 === chemical1)
     )
-    return reaction || { product: "No Reaction", color: "#D1D5DB" }
+    console.log(forProduct)
+    return reaction || { product: `${forProduct.Product}`, color: `${forProduct.ProductColor} (${forProduct.ProductColor2})` }
   }
 
   return { getReaction }

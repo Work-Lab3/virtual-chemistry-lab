@@ -7,14 +7,14 @@ const client = new Client()
 const databases = new Databases(client);
 
 export async function DataBring(collectionId,chemical1){
- let promise= databases.listDocuments(
+ let promise= await databases.listDocuments(
     '67456ae700165699b208',
     collectionId,
     [
         Query.equal('Chemical', chemical1)
     ]
 );
-console.log(promise)
+return promise
 }
 
 export async function listDocuments(collectionId) {
