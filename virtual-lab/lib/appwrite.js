@@ -6,14 +6,24 @@ const client = new Client()
 
 const databases = new Databases(client);
 
-export async function DataBring(){
+export async function DataBring(collectionId){
  let promise= databases.listDocuments(
-    "67456ae700165699b208",
+    collectionId,
     "6745c4e700317a9005db",
     [
-        Query.equal('ChemicalName', 'Water')
+        Query.equal('Chemical1', Chemical1)
     ]
 );
 return promise
 }
 
+export async function listDocuments(collectionId) {
+    try {
+      const response = await databases.listDocuments('67456ae700165699b208',collectionId);
+      console.log('Documents:', response.documents);
+      return response
+    } catch (error) {
+      console.error('Error retrieving documents:', error);
+    }
+  }
+  

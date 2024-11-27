@@ -6,12 +6,14 @@ import ChemicalBlock from './ChemicalBlock'
 import ReactionResult from './ReactionResult'
 import { Button } from "@/components/ui/button"
 import { useChemicals } from '../hooks/useChemicals'
-import { useReactions } from '../hooks/ useReactions'
+import { useReactions } from '../hooks/ useReactions' 
+
 export default function ChemistryLab() {
   const [selectedChemicals, setSelectedChemicals] = useState([])
   const [reactionResult, setReactionResult] = useState(null)
   const { chemicals } = useChemicals()
   const { getReaction } = useReactions()
+  const [chemicalsBlock2, setChemicalsBlock2] = useState([])
 
   const handleChemicalSelect = (chemicalName, blockIndex) => {
     if (
@@ -32,10 +34,10 @@ export default function ChemistryLab() {
   const resetExperiment = () => {
     setSelectedChemicals([])
     setReactionResult(null)
+    setChemicalsBlock2([])
   }
 
-  const chemicalsBlock1 = chemicals.slice(0, 4)
-  const chemicalsBlock2 = chemicals.slice(4)
+  const chemicalsBlock1 = chemicals
 
   return (
     <div className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
@@ -43,6 +45,8 @@ export default function ChemistryLab() {
         <ChemicalBlock 
           chemicals={chemicalsBlock1} 
           onSelect={(name) => handleChemicalSelect(name, 0)}
+          setChemicalBlock={setChemicalsBlock2}
+          block1={true}
           disabled={selectedChemicals.length !== 0}
           title="Block 1 Chemicals"
         />
@@ -51,7 +55,8 @@ export default function ChemistryLab() {
         </div>
         <ChemicalBlock 
           chemicals={chemicalsBlock2} 
-          onSelect={(name) => handleChemicalSelect(name, 1)}
+          onSelect={(name) => handleChemicalSelect(name, 1)}          
+          block1={false}
           disabled={selectedChemicals.length !== 1}
           title="Block 2 Chemicals"
         />
