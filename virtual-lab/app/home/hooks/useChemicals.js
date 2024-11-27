@@ -25,7 +25,8 @@ export function useChemicals() {
       listDocuments('6745c4e700317a9005db').then(res => {
         console.log(res)
         res.documents.map(item => {
-          setChemicals(prev => [...prev, { name: item.ChemicalName, image: item.Image,collectionId:item.CollectionId
+          setChemicals(prev => [...prev, {
+            name: item.ChemicalName, image: item.Image, collectionId: item.CollectionId, color: item.color
           }])
         })
       })
