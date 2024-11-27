@@ -35,8 +35,8 @@ const InfoModal = ({ isOpen, onClose }) => {
             <ul className="list-disc list-inside mb-4">
               <li>Choose chemicals from the Primary and Secondary blocks</li>
               <li>Combine two chemicals in the Reaction Chamber</li>
-              <li>Click "React" to see the result of your experiment</li>
-              <li>Use "Reset" to start a new experiment</li>
+              <li>Click React to see the result of your experiment</li>
+              <li>Use Reset to start a new experiment</li>
             </ul>
             <p>
               Have fun and stay curious! Remember, in a real lab, always follow proper safety
