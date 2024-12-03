@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -22,13 +22,7 @@ export default function ResultsContent() {
   }, [score, total])
 
   if (!score || !total || !difficulty) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-          Invalid results data
-        </div>
-      </div>
-    )
+    return <div>Invalid results data</div>
   }
 
   return (
@@ -40,7 +34,12 @@ export default function ResultsContent() {
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl font-bold text-center mb-8">Quiz Results</h1>
-        <ResultsChart score={parseInt(score)} total={parseInt(total)} />
+
+        {/* Wrap ResultsChart in Suspense boundary */}
+        <Suspense fallback={<div className="text-center">Loading chart...</div>}>
+          <ResultsChart score={parseInt(score)} total={parseInt(total)} />
+        </Suspense>
+
         <p className="text-2xl text-center mt-4">
           You scored <span className="font-bold text-blue-600">{score}</span> out of{' '}
           <span className="font-bold">{total}</span>
@@ -57,21 +56,26 @@ export default function ResultsContent() {
           {percentage}%
         </motion.div>
         <div className="mt-8 flex justify-center space-x-4">
-          <Link 
-            href="/Quiz"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            Play Again
+          <Link href="/Quiz" passHref legacyBehavior>
+            <motion.a
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-block"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Play Again
+            </motion.a>
           </Link>
-          <Link 
-            href="/leaderboard"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-block transition-transform duration-200 hover:scale-105 active:scale-95"
-          >
-            View Leaderboard
+          <Link href="/leaderboard" passHref legacyBehavior>
+            <motion.a
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-block"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View Leaderboard
+            </motion.a>
           </Link>
         </div>
       </motion.div>
     </main>
   )
 }
-
