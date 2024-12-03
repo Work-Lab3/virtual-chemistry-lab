@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -34,7 +34,12 @@ export default function ResultsContent() {
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl font-bold text-center mb-8">Quiz Results</h1>
-        <ResultsChart score={parseInt(score)} total={parseInt(total)} />
+
+        {/* Wrap the ResultsChart inside Suspense with a fallback */}
+        <Suspense fallback={<div className="text-center">Loading chart...</div>}>
+          <ResultsChart score={parseInt(score)} total={parseInt(total)} />
+        </Suspense>
+
         <p className="text-2xl text-center mt-4">
           You scored <span className="font-bold text-blue-600">{score}</span> out of{' '}
           <span className="font-bold">{total}</span>
@@ -74,4 +79,3 @@ export default function ResultsContent() {
     </main>
   )
 }
-
