@@ -7,14 +7,14 @@ export default function TestTube({ chemicals, reactionResult }) {
   const canvasRef = useRef(null);
   const controls = useAnimation();
   const [isShaking, setIsShaking] = useState(false);
-console.log(chemicals[0])
+console.log(chemicals)
 
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        drawBubbles(ctx);
+        // drawBubbles(ctx);
       }
     }
   }, [chemicals, reactionResult]);
@@ -55,7 +55,8 @@ console.log(chemicals[0])
     } else if (chemicals.length === 1) {
       return { backgroundColor: chemicals[0].color };
     }
-    return {};
+    console.log(color)
+    return { backgroundColor:color};
   };
 
   const handleShake = () => {
@@ -81,7 +82,7 @@ console.log(chemicals[0])
             <motion.div
               className="absolute bottom-0 w-full"
               initial={{ height: 0 }}
-              animate={{ height: chemicals.length > 0 ? '100%' : 0 }}
+              animate={{ height: (chemicals.length >1 || chemicals.length==0) ? '100%' : '50%' }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               style={getLiquidStyle()}
             >

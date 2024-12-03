@@ -12,6 +12,7 @@ import { Beaker, Atom, Zap, Info } from 'lucide-react'
 import Stars from '../components/Stars'
 import ParticleEffect from '../components/ParticleEffect'
 import InfoModal from '../components/InfoModal'
+import { useColor } from '@/context/contextProvider'
 
 export default function ChemistryLab() {
   const [selectedChemicals, setSelectedChemicals] = useState([])
@@ -22,9 +23,12 @@ export default function ChemistryLab() {
   const [isExploding, setIsExploding] = useState(false)
   const [showParticles, setShowParticles] = useState(false)
   const [showInfoModal, setShowInfoModal] = useState(false)
+  const { setColor } = useColor();
+const [frstDisable,setFrstDisable]=useState(true);
 
   const handleChemicalSelect = (chemicalName, blockIndex) => {
     console.log(chemicalName)
+    console.log(selectedChemicals)
     if (
       (blockIndex === 0 && selectedChemicals.length === 0) ||
       (blockIndex === 1 && selectedChemicals.length === 1)
@@ -47,14 +51,15 @@ export default function ChemistryLab() {
   const resetExperiment = () => {
     setSelectedChemicals([])
     setReactionResult(null)
-    setChemicalsBlock2([])
+    setChemicalsBlock2([]);
+    setColor('#a7c7cb')
   }
 
   const chemicalsBlock1 = chemicals
   return (
     <div className="min-h-screen w-full bg-[url('/space-background.jpg')] bg-cover bg-center bg-fixed flex items-center justify-center p-4 relative overflow-hidden">
       <Stars />
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -79,6 +84,7 @@ export default function ChemistryLab() {
             block1={true}
             disabled={selectedChemicals.length !== 0}
             title="Primary Chemicals"
+            setFrstDisable={setFrstDisable}
           />
           <div className="flex flex-col items-center justify-center relative">
             <TestTube chemicals={selectedChemicals} reactionResult={reactionResult} />
@@ -135,6 +141,8 @@ export default function ChemistryLab() {
             block1={false}
             disabled={selectedChemicals.length !== 1}
             title="Secondary Chemicals"
+            frstDisable={frstDisable}
+            setFrstDisable={setFrstDisable}
           />
         </div>
         {reactionResult && <ReactionResult result={reactionResult} />}

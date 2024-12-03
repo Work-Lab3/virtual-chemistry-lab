@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const context = createContext()
 
 export function Appwrapper({ children }) {
-    const [color, setColor] = useState('')
+    const [color, setColor] = useState('#a7c7cb')
 
     return (
         <context.Provider value={{

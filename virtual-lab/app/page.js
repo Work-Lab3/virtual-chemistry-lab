@@ -10,7 +10,7 @@ export default function Visit() {
         <div className="w-full min-h-screen flex flex-col bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
             <nav className="w-full p-6 bg-black bg-opacity-30 backdrop-blur-md">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
@@ -19,21 +19,21 @@ export default function Visit() {
                         <Flask className="h-8 w-8 text-yellow-400" />
                         <span className="text-2xl font-bold text-white">VirtuLab</span>
                     </motion.div>
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
                         className="flex space-x-4"
                     >
-                        <Link href="#" className="text-white hover:text-yellow-400 transition-colors">About</Link>
+                        <Link href="/about" className="text-white hover:text-yellow-400 transition-colors">About</Link>
                         <Link href="#" className="text-white hover:text-yellow-400 transition-colors">Contact</Link>
                     </motion.div>
                 </div>
             </nav>
-            
+
             <main className="flex-grow flex items-center justify-center px-4">
                 <div className="max-w-4xl w-full text-center">
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
@@ -41,7 +41,7 @@ export default function Visit() {
                     >
                         Welcome to the Future of Learning
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 }}
@@ -54,14 +54,23 @@ export default function Visit() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                        <Link href="/home" className="inline-flex items-center px-8 py-4 bg-yellow-400 text-black rounded-full text-lg font-semibold hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl">
-                            Enter the Lab
-                            <ChevronRight className="ml-2 h-5 w-5" />
-                        </Link>
+                        <div className="flex gap-4 items-center mx-auto px-[16vw]">
+
+                            <Link href="/home" className="inline-flex items-center px-8 py-4 bg-yellow-400 text-black rounded-full text-lg font-semibold hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl">
+                                Enter the Lab
+                                <ChevronRight className="ml-2 h-5 w-5" />
+                            </Link>
+                            <h1 className="font-bold text-white text-2xl">Or</h1>
+                            <Link href="/Quiz" className="inline-flex items-center px-8 py-4 bg-yellow-400 text-black rounded-full text-lg font-semibold hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl">
+                                Play Quiz
+                                <ChevronRight className="ml-2 h-5 w-5" />
+                            </Link>
+                        </div>
+
                     </motion.div>
                 </div>
             </main>
-            
+
             <footer className="w-full p-6 bg-black bg-opacity-30 backdrop-blur-md">
                 <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
                     <span>&copy; 2023 VirtuLab. All rights reserved.</span>

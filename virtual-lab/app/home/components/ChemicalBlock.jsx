@@ -11,7 +11,8 @@ export default function ChemicalBlock({
   disabled,
   title,
   setChemicalBlock,
-  selectedChemical
+  setFrstDisable,
+  frstDisable
 }) {
 
   const listChemicals = async (collectionId) => {
@@ -23,7 +24,7 @@ export default function ChemicalBlock({
       const newChemicalBlocks = response.documents.map((item) => ({
         name: item.Chemical,
         image: item.Image,
-        color: item?.color
+        color: item?.ChemicalColor
       }));
 
       setChemicalBlock(prev => [...prev, ...newChemicalBlocks]);
@@ -33,9 +34,9 @@ export default function ChemicalBlock({
   }
 
   return (
-    <Card className="w-full md:w-64 bg-white/10 backdrop-blur-sm border-white/20 text-white">
+    <Card className={`w-full md:w-64 bg-white/10 backdrop-blur-sm border-white/20 text-white ${((disabled && block1)||frstDisable) ? 'hidden': 'nothing'}`}>
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center text-blue-300">{title}</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center text-blue-300">{`${!disabled ? title: ''}`}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
@@ -43,17 +44,21 @@ export default function ChemicalBlock({
             <motion.button
               key={chemical.name}
               onClick={() => {
-                onSelect({ name: chemical.name, id: chemical?.collectionId, color: chemical?.color });
+                console.log(chemical)
+                onSelect({ name: chemical.name,
+                   id: chemical?.collectionId, 
+                  color: chemical.color
+                });
                 if (block1 && chemical.collectionId) listChemicals(chemical.collectionId);
+               setFrstDisable(false);
               }}
               disabled={disabled}
-              className={`flex flex-col items-center p-2 rounded-lg transition-all duration-300 
-                ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700/50'
-                }`}
+              className="flex flex-col items-center p-2 rounded-lg transition-opacity duration-500"
+              
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: (disabled && block1)? 0 : 1, y: 0 }} // Control opacity via framer-motion
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
               <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-1 shadow-lg transition-transform transform hover:rotate-12">
@@ -71,4 +76,3 @@ export default function ChemicalBlock({
     </Card>
   )
 }
-
