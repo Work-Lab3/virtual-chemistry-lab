@@ -14,8 +14,10 @@ const geistMono = localFont({
 });
 
 export const metadata = {
+
   title: "Virtual-Chemistry-Lab",
-  description: "This is your virtual chemistry lab",
+  description: "This is your virtual chemistry lab"
+
 };
 
 export default function RootLayout({ children }) {
