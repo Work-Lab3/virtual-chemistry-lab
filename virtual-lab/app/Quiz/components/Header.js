@@ -27,17 +27,17 @@ export default function Header() {
       <nav>
         <ul className="flex space-x-4">
           <li>
-            <Link href="/" className="text-blue-800 hover:text-blue-600 transition-colors">
+            <Link href="/Quiz" className="text-blue-800 hover:text-blue-600 transition-colors">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/leaderboard" className="text-blue-800 hover:text-blue-600 transition-colors">
+            <Link href="#" className="text-blue-800 hover:text-blue-600 transition-colors">
               Leaderboard
             </Link>
           </li>
           <li>
-            <Link href="/profile" className="text-blue-800 hover:text-blue-600 transition-colors">
+            <Link href="#" className="text-blue-800 hover:text-blue-600 transition-colors">
               Profile
             </Link>
           </li>
