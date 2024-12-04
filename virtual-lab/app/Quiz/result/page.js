@@ -1,16 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-
-
-
-export default function ResultPage() {
+function ResultContent() {
   const searchParams = useSearchParams()
   const score = searchParams.get('score')
   const total = searchParams.get('total')
@@ -59,7 +56,6 @@ export default function ResultPage() {
             </div>
 
             <div className="space-y-2">
-              
               <p className="text-center text-4xl font-bold">{percentage}%</p>
             </div>
 
@@ -84,6 +80,14 @@ export default function ResultPage() {
         </CardContent>
       </Card>
     </main>
+  )
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultContent />
+    </Suspense>
   )
 }
 
