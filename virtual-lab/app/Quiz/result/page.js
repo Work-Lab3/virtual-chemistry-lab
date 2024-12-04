@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+
 
 
 
@@ -59,7 +59,7 @@ export default function ResultPage() {
             </div>
 
             <div className="space-y-2">
-              <Progress value={percentage} className="w-full h-4" />
+              
               <p className="text-center text-4xl font-bold">{percentage}%</p>
             </div>
 
