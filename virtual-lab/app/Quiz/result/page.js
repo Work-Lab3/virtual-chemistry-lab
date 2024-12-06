@@ -170,6 +170,7 @@ export default function ResultPage() {
   }
 
   return (
+    <Suspense fallback={<div>Loading...</div>} >
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 p-4 overflow-hidden">
       <ParticleBackground />
       <Card className="w-full max-w-4xl mx-auto overflow-hidden shadow-2xl relative backdrop-blur-sm bg-white/10 dark:bg-gray-800/30">
@@ -263,5 +264,6 @@ export default function ResultPage() {
         </CardContent>
       </Card>
     </main>
+    </Suspense>
   )
 }
