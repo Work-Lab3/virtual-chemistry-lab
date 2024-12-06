@@ -50,7 +50,7 @@ export default function AboutUs() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {teamMembers.map((member) => (
-                    <Link href={member.link|| ''}>
+                    <Link href={member.link|| ''} key={member.name}>
                         <Card key={member.name} className="overflow-hidden transition-all hover:shadow-lg">
                             <CardHeader className="p-0">
                                 <div className="h-32 bg-gradient-to-r from-primary to-primary-foreground" />
