@@ -249,7 +249,7 @@ export default function ResultPage() {
               <Link href="/home">
                 <Button variant="outline" className="w-full sm:w-auto border-2 border-blue-500 text-blue-100 bg-blue-500/20 hover:bg-blue-600/40 dark:hover:bg-blue-800/40 font-bold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105 hover:shadow-lg">
                   <Beaker className="w-5 h-5 mr-2" />
-                Visit Our Lab
+                Visit Our
                 </Button>
               </Link>
               <Button onClick={shareResults} variant="outline" className="w-full sm:w-auto border-2 border-teal-500 text-teal-100 bg-teal-500/20 hover:bg-teal-600/40 dark:hover:bg-teal-800/40 font-bold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105 hover:shadow-lg">

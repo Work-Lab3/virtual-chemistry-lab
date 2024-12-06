@@ -11,7 +11,7 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <Link href="/" className="text-2xl font-bold text-blue-800 flex items-center">
+      <Link href="/Quiz" className="text-2xl font-bold text-blue-800 flex items-center">
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -32,12 +32,12 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/leaderboard" className="text-blue-800 hover:text-blue-600 transition-colors">
+            <Link href="#" className="text-blue-800 hover:text-blue-600 transition-colors">
               Leaderboard
             </Link>
           </li>
           <li>
-            <Link href="/profile" className="text-blue-800 hover:text-blue-600 transition-colors">
+            <Link href="#" className="text-blue-800 hover:text-blue-600 transition-colors">
               Profile
             </Link>
           </li>

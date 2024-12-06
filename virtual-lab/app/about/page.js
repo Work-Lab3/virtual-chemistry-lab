@@ -27,9 +27,9 @@ const teamMembers = [
     {
         name: "Spandan Khyaju",
         role: "Database Manager",
-        image: "/placeholder.svg?height=100&width=100",
+        image: "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-1/449488131_1001663034922092_1691430870433042165_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0ecb9b&_nc_ohc=m9mA8rCYyw4Q7kNvgHAP-dz&_nc_zt=24&_nc_ht=scontent.fktm7-1.fna&_nc_gid=AbNYVH5p5a8hRL3azhsOGz0&oh=00_AYAYss1yqKQw5LHicZ13ih3qSpw3XfB2tuvLBjWh3B6_2A&oe=6758ADAF",
         initials: "SK",
-        link: ''
+        link: 'https://www.facebook.com/spandan.khyaju'
     },
     {
         name: "Dhawa Chiring Tamang",

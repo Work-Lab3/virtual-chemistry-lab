@@ -70,7 +70,7 @@ export default function Quiz() {
     console.log("handleAnswer called with:", answer, correctAnswer)
     const correct = answer.trim() === correctAnswer.trim();
     if (correct) {
-      console.log("correct")
+    
       setScore((prevScore) => prevScore + 1)
     }
     handleNextQuestion()
