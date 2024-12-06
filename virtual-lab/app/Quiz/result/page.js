@@ -1,6 +1,4 @@
-'use client'
-
-import { useEffect, useState, useRef } from 'react'
+import { Suspense, useEffect, useState, useRef } from 'react'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -157,7 +155,6 @@ export default function ResultPage() {
   }
 
   const downloadCertificate = () => {
-    // Implement certificate generation and download logic here
     alert('Certificate download feature coming soon!');
   }
 
@@ -267,4 +264,3 @@ export default function ResultPage() {
     </main>
   )
 }
-
