@@ -16,15 +16,18 @@ export default function Quiz() {
   const [questions, setQuestions] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [score, setScore] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(60)
+  const [timeLeft, setTimeLeft] = useState(30)
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const forDifficulty = {
-    easy: '67496f79000f57a9a7b7',
-    medium: '67497061000fe1f8ef17',
-    hard: '67497066002b4e582f55'
+    easy: ['67496f79000f57a9a7b7','6752b47200105ca74eaa'],
+    medium: ['67497061000fe1f8ef17','6752adae00392ad7e7a8'],
+    hard: ['67497066002b4e582f55','6752ae6600332d4d1c13']
   }
+
+
+  
 
   // Parse query parameters
   useEffect(() => {
@@ -33,13 +36,20 @@ export default function Quiz() {
     setDifficulty(difficultyParam)
   }, [])
 
+  
   useEffect(() => {
+    const getRandom = (array) => {
+      console.log(array);
+      
+      const randomIndex = Math.floor(Math.random() * array.length); // Generate a random index
+      return array[randomIndex]; // Return the number at the random index
+    };
     async function loadQuestions() {
       if (difficulty) {
         setLoading(true)
-        const fetchedQuestions = await getQuestions(forDifficulty[difficulty])
-        console.log(fetchedQuestions)
+        const fetchedQuestions = await getQuestions(getRandom(forDifficulty[difficulty]))
         setQuestions(fetchedQuestions?.documents)
+        console.log(questions)
         setLoading(false)
       }
     }
@@ -58,8 +68,9 @@ export default function Quiz() {
 
     setAnswerGiven(true);
     console.log("handleAnswer called with:", answer, correctAnswer)
-    const correct = answer === correctAnswer
+    const correct = answer.trim() === correctAnswer.trim();
     if (correct) {
+      console.log("correct")
       setScore((prevScore) => prevScore + 1)
     }
     handleNextQuestion()
@@ -69,12 +80,12 @@ export default function Quiz() {
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1)
-        setTimeLeft(60)
+        setTimeLeft(30)
         setAnswerGiven(false)
       } else {
         setQuizCompleted(true)
       }
-    }, 4000)
+    }, 1000)
   }
 
   useEffect(() => {
