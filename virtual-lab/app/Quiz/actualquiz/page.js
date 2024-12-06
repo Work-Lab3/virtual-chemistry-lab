@@ -54,7 +54,7 @@ export default function Quiz() {
       }
     }
     loadQuestions()
-  }, [difficulty])
+  }, [difficulty, forDifficulty, questions])
 
   useEffect(() => {
     if (timeLeft === 0) {
