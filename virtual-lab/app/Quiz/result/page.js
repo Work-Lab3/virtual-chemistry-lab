@@ -110,9 +110,9 @@ const ParticleBackground = () => {
   )
 }
 
-function SearchParamsWrapper({ children }: { children: (searchParams: ReturnType<typeof useSearchParams>) => React.ReactNode }) {
+function SearchParamsWrapper({ children }) {
   const searchParams = useSearchParams()
-  return <>{children(searchParams)}</>
+  return children(searchParams)
 }
 
 export default function ResultPage() {
@@ -135,7 +135,7 @@ export default function ResultPage() {
 
           useEffect(() => {
             if (score && total) {
-              const calculatedPercentage = Math.round((parseInt(score) / parseInt(total)) * 100)
+              const calculatedPercentage = Math.round((score / total) * 100)
               setPercentage(calculatedPercentage)
               progressAnimation.start({
                 width: `${calculatedPercentage}%`,
