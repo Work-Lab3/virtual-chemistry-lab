@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -8,10 +8,14 @@ import ProgressBar from '../components/ProgressBar'
 import Timer from '../components/Timer'
 import { getQuestions } from '../(Appwrite)/appwrite'
 
+const forDifficulty = {
+  easy: ['67496f79000f57a9a7b7','6752b47200105ca74eaa'],
+  medium: ['67497061000fe1f8ef17','6752adae00392ad7e7a8'],
+  hard: ['67497066002b4e582f55','6752ae6600332d4d1c13']
+}
+
 export default function Quiz() {
   const [answerGiven, setAnswerGiven] = useState(false)
-
-
   const [difficulty, setDifficulty] = useState(null)
   const [questions, setQuestions] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -19,63 +23,58 @@ export default function Quiz() {
   const [timeLeft, setTimeLeft] = useState(30)
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [loading, setLoading] = useState(true)
-
-  const forDifficulty = {
-    easy: ['67496f79000f57a9a7b7','6752b47200105ca74eaa'],
-    medium: ['67497061000fe1f8ef17','6752adae00392ad7e7a8'],
-    hard: ['67497066002b4e582f55','6752ae6600332d4d1c13']
-  }
-
-
-  
+  const [error, setError] = useState(null)
 
   // Parse query parameters
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const difficultyParam = params.get('difficulty')
-    setDifficulty(difficultyParam)
+    if (difficultyParam && forDifficulty[difficultyParam]) {
+      setDifficulty(difficultyParam)
+    } else {
+      setError('Invalid difficulty level')
+    }
   }, [])
 
-  
-  useEffect(() => {
-    const getRandom = (array) => {
-      console.log(array);
-      
-      const randomIndex = Math.floor(Math.random() * array.length); // Generate a random index
-      return array[randomIndex]; // Return the number at the random index
-    };
-    async function loadQuestions() {
-      if (difficulty) {
-        setLoading(true)
-        const fetchedQuestions = await getQuestions(getRandom(forDifficulty[difficulty]))
-        setQuestions(fetchedQuestions?.documents)
-        console.log(questions)
+  const loadQuestions = useCallback(async () => {
+    if (difficulty) {
+      setLoading(true)
+      setError(null)
+      try {
+        const randomId = forDifficulty[difficulty][Math.floor(Math.random() * forDifficulty[difficulty].length)]
+        const fetchedQuestions = await getQuestions(randomId)
+        setQuestions(fetchedQuestions?.documents || [])
+      } catch (err) {
+        setError('Failed to load questions. Please try again.')
+      } finally {
         setLoading(false)
       }
     }
-    loadQuestions()
-  }, [difficulty, forDifficulty, questions])
+  }, [difficulty])
 
   useEffect(() => {
+    loadQuestions()
+  }, [loadQuestions])
+
+  useEffect(() => {
+    if (quizCompleted) return
+
     if (timeLeft === 0) {
       handleNextQuestion()
     }
     const timer = setTimeout(() => setTimeLeft(prev => (prev > 0 ? prev - 1 : 0)), 1000)
     return () => clearTimeout(timer)
-  }, [timeLeft])
+  }, [timeLeft, quizCompleted])
 
-  const handleAnswer = (answer,correctAnswer) => {
-
-    setAnswerGiven(true);
-    console.log("handleAnswer called with:", answer, correctAnswer)
-    const correct = answer.trim() === correctAnswer.trim();
+  const handleAnswer = (answer, correctAnswer) => {
+    setAnswerGiven(true)
+    const correct = answer.trim() === correctAnswer.trim()
     if (correct) {
-    
       setScore((prevScore) => prevScore + 1)
     }
     handleNextQuestion()
-
   }
+
   const handleNextQuestion = () => {
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
@@ -104,6 +103,16 @@ export default function Quiz() {
         >
           Loading Quiz...
         </motion.div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-2xl font-bold text-red-600">
+          {error}
+        </div>
       </div>
     )
   }
@@ -176,3 +185,4 @@ function getDifficultyBackground(difficulty) {
       return 'bg-gradient-to-br from-gray-100 to-gray-200'
   }
 }
+
