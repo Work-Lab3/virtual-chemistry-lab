@@ -52,7 +52,7 @@ export default function Visit() {
 
             <footer className="w-full p-6 bg-black bg-opacity-30 backdrop-blur-md">
                 <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
-                    <span>&copy; 2023 VirtuLab. All rights reserved.</span>
+                    <span>&copy; 2024 VirtuLab. All rights reserved.</span>
                     <div className="flex items-center space-x-4">
                         <Atom className="h-6 w-6 text-yellow-400 animate-spin-slow" />
                         <span>Powered by Team</span>
