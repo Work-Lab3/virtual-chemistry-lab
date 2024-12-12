@@ -110,12 +110,12 @@ export default function QuizResults({ score, total, difficulty, percentage, prog
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              <Link href="/Quiz">
+              <a href="/Quiz">
                 <Button variant="default" className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105 hover:shadow-lg">
                   <ZapIcon className="w-5 h-5 mr-2" />
                   Take Another Quiz
                 </Button>
-              </Link>
+              </a>
               <Link href="/home">
                 <Button variant="outline" className="w-full sm:w-auto border-2 border-blue-500 text-blue-100 bg-blue-500/20 hover:bg-blue-600/40 dark:hover:bg-blue-800/40 font-bold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105 hover:shadow-lg">
                   <Beaker className="w-5 h-5 mr-2" />

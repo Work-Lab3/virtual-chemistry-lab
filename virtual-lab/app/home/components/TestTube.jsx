@@ -3,6 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useColor } from '@/context/contextProvider';
 
 export default function TestTube({ chemicals, reactionResult }) {
+  console.log(chemicals[1]?.color)
   const { color } = useColor();
   const canvasRef = useRef(null);
   const controls = useAnimation();
@@ -52,9 +53,12 @@ export default function TestTube({ chemicals, reactionResult }) {
         background: `linear-gradient(to top, ${chemicals[0].color} 50%, ${chemicals[1].color} 50%)`,
       };
     } else if (chemicals.length === 1) {
+      console.log(chemicals[0].color)
       return { backgroundColor: chemicals[0].color };
     }
-    return { backgroundColor: color };
+    else if(chemicals.length==0){
+      return { backgroundColor: color }
+    }
   };
 
   const handleShake = () => {
@@ -80,7 +84,7 @@ export default function TestTube({ chemicals, reactionResult }) {
             <motion.div
               className="absolute bottom-0 left-0 right-0"
               initial={{ height: 0 }}
-              animate={{ 
+              animate={{
                 height: chemicals.length > 0 ? (chemicals.length === 1 ? '50%' : '100%') : '0%'
               }}
               transition={{ duration: 0.8, ease: "easeInOut" }}

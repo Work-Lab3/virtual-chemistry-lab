@@ -9,9 +9,9 @@ import Timer from '../components/Timer'
 import { getQuestions } from '../(Appwrite)/appwrite'
 
 const forDifficulty = {
-  easy: ['67496f79000f57a9a7b7','6752b47200105ca74eaa'],
-  medium: ['67497061000fe1f8ef17','6752adae00392ad7e7a8'],
-  hard: ['67497066002b4e582f55','6752ae6600332d4d1c13']
+  easy: ['67496f79000f57a9a7b7','6752b47200105ca74eaa','6752ada6000023c5a737','675a86de001e52aaa4da','675a939c001d0d47559d','675a97c1000590dcfd92'],
+  medium: ['67497061000fe1f8ef17','6752adae00392ad7e7a8' ,'675a8f8b003598cb85ec','675a90710027044f60b3','675a96be002a85647840'],
+  hard: ['67497066002b4e582f55','6752ae6600332d4d1c13','675a85fd00058fb21ec0']
 }
 
 export default function Quiz() {
