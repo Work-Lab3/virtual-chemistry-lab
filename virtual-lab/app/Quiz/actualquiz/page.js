@@ -42,6 +42,7 @@ export default function Quiz() {
       setError(null)
       try {
         const randomId = forDifficulty[difficulty][Math.floor(Math.random() * forDifficulty[difficulty].length)]
+        
         const fetchedQuestions = await getQuestions(randomId)
         setQuestions(fetchedQuestions?.documents || [])
       } catch (err) {
